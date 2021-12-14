@@ -48,17 +48,17 @@ function TodoForm({ addTodo }) {
 function App() {
   const [todos, setTodos] = React.useState([
     {
-      text: "Tech talk session #18 : 'What is cryptocurrency?'",
+      text: "TTS #18 : 'What is cryptocurrency?'",
       isCompleted: false,
       date: new Date()
     },
     {
-      text: "Tech talk session #19 : 'How to manage your asset wallet?'",
+      text: "TTS #19 : 'How to manage your asset wallet?'",
       isCompleted: false,
       date: new Date()
     },
     {
-      text: "Tech talk session #20 : 'What is React and how easy is it to use it?'",
+      text: "TTS #20 : 'What is React and how easy is it to use it?'",
       isCompleted: false,
       date: new Date()
     }
@@ -101,82 +101,46 @@ function App() {
 
   return (
     <div className="app">
-      <h1 className='text-center'>Tech Talk Planning</h1>
-
+      <h1 className='text-center'>Tech Talk Sessions (TTS)</h1>
 
       <div className="todo-list">
+        <h3> Agenda </h3>
         {todos.map((todo, index) => (
           <Todo
             key={index}
             index={index}
             todo={todo}
-
             completeTodo={completeTodo}
             removeTodo={removeTodo}
           />
         ))}
-        <p> Choose a date on the calendar and enter the content of your talk session. Then press ENTER to validate. </p>
-        <TodoForm addTodo={addTodo} />
       </div>
-      
 
       <div className='calendar-container'>
       <Calendar onChange={setDate} value={date} />
-      <p className='text-center'>
-      <span className='bold'>Selected Date:</span>{' '}
-        {date.toDateString()}
-      </p>
+
       </div>
 
 
       <div className="App">
-          <h3>Chosen Date:</h3>
+          <h3>Selected Date:</h3>
           <span className='bold'></span>{' '}
           {date.toDateString()}
           {(e) => setDate(e.target.date.toDateString())}
 
          <h3>Enter the title of the session:</h3>
          <input
-            placeholder="Session title"
+            placeholder="Session"
             value={name}
             onChange={(e) => setName(e.target.value)}
          />
-         <h3>Description:</h3>
-         <input
-            placeholder="Session description"
-            value={pwd}
-            onChange={(e) => setPwd(e.target.value)}
-         />
-         <div>
-           <h1> Result </h1>
-         </div>
-
-
-         {localStorage.getItem('chosen_date') && (
-            <div>
-               Chosen date: <p>{localStorage.getItem('chosen_date')}</p>
-            </div>
-         )}
-
-         {localStorage.getItem('session_title') && (
-            <div>
-              Session title: <p>{localStorage.getItem('session_title')}</p>
-            </div>
-         )}
-         {localStorage.getItem('session_description') && (
-            <div>
-               Session description: <p>{localStorage.getItem('session_description')}</p>
-            </div>
-         )}
+         
 
 
         <div>
             <button onClick={handle}>Done</button>
          </div>
 
-         <div>
-            <button onClick={remove}>Remove</button>
-         </div>
          </div>
 
 
